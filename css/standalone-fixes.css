@@ -1,0 +1,3 @@
+
+/* Standalone export helper: prevents broken links for pages not exported yet. */
+a.standalone-unavailable { cursor: not-allowed; }
