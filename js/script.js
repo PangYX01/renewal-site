@@ -21,9 +21,10 @@ const oldRegistrationFieldWrapper = document.querySelector('.ssm-old-registratio
 let payButton = renewalForm?.querySelector('.form-submit');
 const PAY_BUTTON_LABEL = payButton?.textContent?.trim() || 'Pay Now';
 const FORM_ID = Math.max(1, Number(renewalForm?.dataset?.formId || 1));
+const STANDALONE_STATIC = window.OneStopSSM?.mode === 'static';
 const PAYMENT_GATEWAY = String(renewalForm?.dataset?.paymentGateway || 'billplz').toLowerCase();
 const FIUU_CHECKOUT_EXPERIENCE = String(renewalForm?.dataset?.fiuuCheckoutExperience || 'hosted').toLowerCase();
-const IS_FIUU_PREPARED = PAYMENT_GATEWAY === 'fiuu' && FIUU_CHECKOUT_EXPERIENCE === 'prepared_seamless';
+const IS_FIUU_PREPARED = !STANDALONE_STATIC && PAYMENT_GATEWAY === 'fiuu' && FIUU_CHECKOUT_EXPERIENCE === 'prepared_seamless';
 const PAYMENT_GATEWAY_LABEL = PAYMENT_GATEWAY === 'fiuu' ? 'Fiuu' : (PAYMENT_GATEWAY === 'razorpay' ? 'Razorpay' : (PAYMENT_GATEWAY === 'billplz' ? 'Billplz' : 'Payment'));
 const PAYMENT_REDIRECT_TEXT = PAYMENT_GATEWAY === 'none' ? 'Submitting...' : `Redirecting to ${PAYMENT_GATEWAY_LABEL}...`;
 const paymentMethodSection = renewalForm?.querySelector('.osr-payment-methods');
@@ -546,6 +547,16 @@ function handleServerResponse(data, normalizedValue) {
 }
 
 async function lookupBusiness(normalizedValue) {
+  if (STANDALONE_STATIC) {
+    if (!normalizedValue) {
+      applyInvalidFormatMode('Please enter a valid registration number format.');
+      return false;
+    }
+    applyFallbackMode({ mode: 'fallback', data: null }, normalizedValue);
+    setRegistrationStatus('Standalone mode: enter the Business Name manually. SSM verification is not connected yet.', 'warning');
+    return true;
+  }
+
   if (!normalizedValue) {
     applyInvalidFormatMode('Please enter a valid registration number format.');
     return false;
@@ -761,6 +772,10 @@ function applyPricingConfig(config) {
 }
 
 async function loadPricingConfig() {
+  if (STANDALONE_STATIC) {
+    // Keep the exported/local pricing values. No WordPress or remote API request is made.
+    return;
+  }
   try {
     const response = await fetch(window.OneStopSSM.restBase + 'pricing-config?form_id=' + encodeURIComponent(FORM_ID));
     const config = await response.json().catch(() => ({}));
@@ -1543,6 +1558,13 @@ if (IS_FIUU_PREPARED && renewalForm) {
 }
 
 renewalForm?.addEventListener('submit', async (event) => {
+  if (STANDALONE_STATIC) {
+    event.preventDefault();
+    showFormSubmitError('This standalone HTML build is not connected to the payment backend yet. No submission or payment was sent.');
+    resetPayButton();
+    return;
+  }
+
   if (IS_FIUU_PREPARED) {
     event.preventDefault();
     return;

@@ -1,22 +1,25 @@
-OSR BUSINESS RENEW - STANDALONE HTML PACKAGE
+OSR Business Renew — WordPress-Free Static Frontend
 
-UPLOAD
-Upload the CONTENTS of this folder to the web root for osrbusinessrenew.com.my.
+This package contains the public HTML/CSS/JS site only. It makes NO runtime requests to WordPress (/wp-json, /wp-admin, /wp-includes).
 
-URL STRUCTURE
-/                       -> index.html
-/about-us/              -> about-us/index.html
-/faqs/                  -> faqs/index.html
-/privacy-policy/        -> privacy-policy/index.html
-/refund-policy/         -> refund-policy/index.html
-/terms-and-conditions/  -> terms-and-conditions/index.html
-/payment-confirmation/  -> payment-confirmation/index.html
-/payment-failed/        -> payment-failed/index.html
-/bm/                    -> Bahasa Malaysia version
+Clean URL structure:
+  /                 -> index.html
+  /about-us/        -> about-us/index.html
+  /faqs/            -> faqs/index.html
+  /privacy-policy/  -> privacy-policy/index.html
+  /refund-policy/   -> refund-policy/index.html
+  /terms-and-conditions/ -> terms-and-conditions/index.html
+  /bm/              -> bm/index.html
 
-IMPORTANT BACKEND NOTE
-This package makes the public site/pages/assets independent from WordPress for rendering.
-The renewal form JavaScript still contains the existing WordPress REST/AJAX backend calls for SSM verification, pricing, entry creation and payment. Do NOT remove the current WordPress backend until those endpoints are migrated to the standalone PHP/MySQL backend.
+FORM STATUS
+- Pricing uses the exported local values in js/script.js.
+- SSM lookup does not contact WordPress. It switches to manual Business Name entry.
+- Submit/Pay is intentionally blocked until the standalone backend is connected.
+- No form data or payment is sent anywhere in this static build.
 
-ADMIN
-/admin/ and /reports/ are placeholders. The actual standalone admin/report backend is the next migration phase.
+DEPLOYMENT
+- Vercel: upload/deploy this folder as-is. No vercel.json proxy is required.
+- Plesk: upload these files into the document root (usually httpdocs).
+
+NEXT PHASE
+Connect a standalone API (PHP/MySQL recommended for Plesk) for SSM verification, pricing, entries, Fiuu payment, callbacks, email/PDF, admin and reports.
