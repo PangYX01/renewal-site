@@ -1,0 +1,3 @@
+import login from '../lib/routes/admin-login.js'; import logout from '../lib/routes/admin-logout.js'; import session from '../lib/routes/admin-session.js'; import stats from '../lib/routes/admin-stats.js'; import records from '../lib/routes/admin-records.js'; import record from '../lib/routes/admin-record.js'; import note from '../lib/routes/admin-note.js'; import exp from '../lib/routes/admin-export.js';
+const routes={login,logout,session,stats,records,record,note,export:exp};
+export default async function handler(req,res){ const action=String(req.query?.action||''); const fn=routes[action]; if(!fn){res.status(404).json({error:'Admin API route not found.'});return;} return fn(req,res); }

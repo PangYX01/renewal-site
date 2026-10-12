@@ -1,16 +1,19 @@
 {
   "rewrites": [
-    { "source": "/api/pricing", "destination": "/api/index?action=pricing" },
-    { "source": "/api/ssm-check", "destination": "/api/index?action=ssm-check" },
-    { "source": "/api/admin-login", "destination": "/api/index?action=admin-login" },
-    { "source": "/api/admin-logout", "destination": "/api/index?action=admin-logout" },
-    { "source": "/api/admin-session", "destination": "/api/index?action=admin-session" },
-    { "source": "/api/admin-stats", "destination": "/api/index?action=admin-stats" },
-    { "source": "/api/admin-records", "destination": "/api/index?action=admin-records" },
-    { "source": "/api/admin-record", "destination": "/api/index?action=admin-record" },
-    { "source": "/api/admin-note", "destination": "/api/index?action=admin-note" },
-    { "source": "/api/admin-export", "destination": "/api/index?action=admin-export" },
-    { "source": "/api/reports-overview", "destination": "/api/index?action=reports-overview" },
-    { "source": "/api/reports-analysis", "destination": "/api/index?action=reports-analysis" }
+    { "source": "/api/payment/create", "destination": "/api/payment-create" },
+    { "source": "/api/payment/fiuu/seamless", "destination": "/api/fiuu-seamless" },
+    { "source": "/api/payment/fiuu/start", "destination": "/api/fiuu-start" },
+
+    { "source": "/api/admin-login", "destination": "/api/admin?action=login" },
+    { "source": "/api/admin-logout", "destination": "/api/admin?action=logout" },
+    { "source": "/api/admin-session", "destination": "/api/admin?action=session" },
+    { "source": "/api/admin-stats", "destination": "/api/admin?action=stats" },
+    { "source": "/api/admin-records", "destination": "/api/admin?action=records" },
+    { "source": "/api/admin-record", "destination": "/api/admin?action=record" },
+    { "source": "/api/admin-note", "destination": "/api/admin?action=note" },
+    { "source": "/api/admin-export", "destination": "/api/admin?action=export" },
+
+    { "source": "/api/reports-overview", "destination": "/api/reports?action=overview" },
+    { "source": "/api/reports-analysis", "destination": "/api/reports?action=analysis" }
   ]
 }

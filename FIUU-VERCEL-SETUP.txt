@@ -1,0 +1,30 @@
+OSR Vercel + Fiuu setup
+=======================
+
+Vercel Environment Variables required:
+- DATABASE_URL
+- ADMIN_PASSWORD
+- SESSION_SECRET
+- FIUU_MERCHANT_ID
+- FIUU_VERIFY_KEY
+- FIUU_SECRET_KEY
+- FIUU_SANDBOX=false   (set true only when using sandbox credentials)
+- PUBLIC_SITE_URL      optional but recommended, e.g. https://your-domain.com
+
+This package uses 8 Serverless Functions:
+1. api/pricing.js
+2. api/ssm-check.js
+3. api/admin.js
+4. api/reports.js
+5. api/payment-create.js
+6. api/fiuu-seamless.js
+7. api/fiuu-start.js
+8. api/fiuu-callback.js
+
+Important:
+- Fiuu credentials are read only on the server from Vercel environment variables.
+- Do not put Fiuu keys in HTML/JS/GitHub.
+- The frontend uses Fiuu Prepared Seamless Checkout.
+- Fiuu callback/return updates ssm_renewals in Supabase/Postgres.
+- Email and PDF sending are not enabled yet in this build.
+- Test payment flow carefully before using live traffic.
