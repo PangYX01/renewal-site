@@ -1,2 +1,32 @@
 html,body{margin:0;min-height:100%;}
 .admin-login-page{min-height:100vh;display:grid;place-items:center;background:#f4f7fb;padding:24px}.admin-login-card{width:min(460px,100%);background:#fff;border:1px solid #dfe6ee;border-radius:18px;padding:32px;box-shadow:0 20px 50px rgba(30,54,82,.12)}.admin-login-card .admin-eyebrow{margin:0 0 6px}.admin-login-card h1{margin:0 0 22px}.admin-login-card label{display:grid;gap:8px;font-weight:600}.admin-login-card input{width:100%;box-sizing:border-box;border:1px solid #cfd8e3;border-radius:10px;padding:12px 14px;font:inherit}.admin-login-card .admin-button{width:100%;margin-top:16px}.admin-login-message{min-height:22px;margin:12px 0 0;color:#b42318}.standalone-disabled-action{opacity:.5;pointer-events:none}.admin-config-note{margin:12px 0 0;color:#637083;font-size:13px}
+
+
+/* Standalone visual parity patch */
+body.admin-page,.onestop-reports-app,#onestop-ssm-dashboard,#onestop-ssm-dashboard button,#onestop-ssm-dashboard input,#onestop-ssm-dashboard select,.onestop-reports-app button,.onestop-reports-app input,.onestop-reports-app select{font-family:"Inter",Arial,Helvetica,sans-serif!important}
+.standalone-nav-placeholder{cursor:default;pointer-events:none}
+#onestop-ssm-dashboard .admin-panel-head{padding:16px 18px!important}
+#onestop-ssm-dashboard .admin-panel-head h2{font-size:20px!important;font-weight:600!important;line-height:1.35!important}
+#onestop-ssm-dashboard .admin-status-tabs{gap:8px!important}
+#onestop-ssm-dashboard .admin-status-tabs button{min-height:34px!important;padding:0 13px!important;font-size:13px!important;border-radius:8px!important}
+#onestop-ssm-dashboard .admin-toolbar{padding:14px 18px!important;gap:10px!important}
+#onestop-ssm-dashboard .admin-search input,#onestop-ssm-dashboard .admin-date input,#onestop-ssm-dashboard .admin-date select{min-height:38px!important;height:38px!important;font-size:13px!important}
+#onestop-ssm-dashboard .admin-button{min-height:38px!important;height:38px!important;padding:0 14px!important;font-size:13px!important;border-radius:8px!important}
+#onestop-ssm-dashboard .admin-table th{padding:14px!important;font-size:12px!important;font-weight:700!important;letter-spacing:.02em!important}
+#onestop-ssm-dashboard .admin-table td{padding:13px 14px!important;font-size:13px!important;font-weight:400!important}
+#onestop-ssm-dashboard .amount-cell{font-weight:700!important}
+#onestop-ssm-dashboard .status-badge{font-size:11px!important;padding:5px 10px!important;border-radius:999px!important;font-weight:700!important}
+#onestop-ssm-dashboard .method-text{color:#2563eb!important;font-weight:600!important}
+#onestop-ssm-dashboard .row-actions{display:flex!important;align-items:center!important;gap:8px!important;white-space:nowrap!important}
+#onestop-ssm-dashboard .row-view-button{min-height:34px!important;padding:0 12px!important;border-radius:7px!important;font-size:13px!important;background:#fff!important;border:1px solid #d8dee7!important;color:#243247!important;font-weight:600!important}
+#onestop-ssm-dashboard .row-delete-button{width:34px!important;height:34px!important;display:inline-grid!important;place-items:center!important;border-radius:7px!important;background:#fff!important;border:1px solid #d8dee7!important;color:#475569!important;padding:7px!important}
+#onestop-ssm-dashboard .row-delete-button svg{width:16px!important;height:16px!important;display:block!important}
+#onestop-ssm-dashboard .admin-table-footer-bar{padding:11px 14px!important}
+.onestop-reports-app .reports-filter-panel{padding:18px 20px!important}
+.onestop-reports-app .reports-filter-panel label span{font-size:12px!important;font-weight:600!important;color:#344054!important}
+.onestop-reports-app .reports-filter-panel select,.onestop-reports-app .reports-filter-panel input{font-size:14px!important;min-height:40px!important;border-radius:8px!important}
+.onestop-reports-app .reports-date-note{font-size:12px!important;margin:10px 2px 18px!important}
+.onestop-reports-app .reports-summary-label{font-size:12px!important}
+.onestop-reports-app .reports-summary-card strong{font-size:26px!important;font-weight:700!important}
+.onestop-reports-app .reports-summary-secondary{font-size:13px!important}
+.onestop-reports-app .reports-card h2{font-size:17px!important;font-weight:600!important}

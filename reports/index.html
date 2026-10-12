@@ -3,6 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <title>Reports | One Stop Renew Portal</title>
 <link rel="stylesheet" href="/css/admin.css">
 <link rel="stylesheet" href="/css/reports.css">
@@ -14,7 +17,7 @@
 <div class="admin-topbar-inner">
 <div><p class="admin-eyebrow">One Stop Renew Portal</p><h1>Reports</h1></div>
 <div class="admin-topbar-actions">
-<nav class="osr-pm-main-nav onestop-plugin-nav" aria-label="SSM Forms"><a href="/admin/">Entries</a><a class="active" href="/reports/">Reports</a></nav>
+<nav class="osr-pm-main-nav onestop-plugin-nav" aria-label="SSM Forms"><a href="#" class="standalone-nav-placeholder" aria-disabled="true">All Forms</a><a href="/admin/">Entries</a><a class="active" href="/reports/">Reports</a><a href="#" class="standalone-nav-placeholder" aria-disabled="true">Payment Gateways</a><a href="#" class="standalone-nav-placeholder" aria-disabled="true">Settings</a></nav>
 <a class="admin-home-link" href="/">Back to site</a>
 <button class="admin-button admin-button-secondary" id="reports-logout-button" type="button">Logout</button>
 </div>
@@ -29,7 +32,7 @@
 <button id="reports-apply" class="admin-button admin-button-primary" type="button">Apply</button>
 <button id="reports-clear" class="admin-button admin-button-secondary" type="button">Clear</button>
 </section>
-<p class="reports-date-note">Revenue and Paid use payment date when available; legacy paid records use submitted date. Submission, verification, pending and failed metrics use submitted date. Refunded uses refund date when available.</p>
+<p class="reports-date-note">All report metrics use the submitted date.</p>
 <section id="reports-summary" class="reports-summary-grid" aria-label="Report summary"><div class="reports-loading">Loading summary…</div></section>
 <section class="reports-card reports-chart-card"><div class="reports-section-head"><h2>Revenue Trend</h2><span id="reports-aov"></span></div><div id="reports-revenue-trend" class="reports-chart-region"><div class="reports-loading">Loading chart…</div></div></section>
 <section class="reports-card reports-chart-card"><div class="reports-section-head"><h2>Submissions Trend</h2><span id="reports-trend-granularity"></span></div><div id="reports-submission-trend" class="reports-chart-region"><div class="reports-loading">Loading chart…</div></div></section>
