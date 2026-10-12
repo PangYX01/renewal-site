@@ -942,8 +942,11 @@ var ht_ctc_variables = {"g_an_event_name":"click to chat","gtm_event_name":"Clic
 <script id="onestop-ssm-draft-js" src="../js/form-draft.js"></script>
 <script id="onestop-ssm-script-js-extra">
 window.OneStopSSM = {
-  mode: "static",
-  backendEnabled: false
+  mode: "vercel",
+  backendEnabled: true,
+  ajaxUrl: "/api/ssm-check",
+  ajaxAction: "onestop_ssm_check_ssm",
+  restBase: "/api/"
 };
 </script>
 <script id="onestop-ssm-script-js" src="../js/script.js"></script>

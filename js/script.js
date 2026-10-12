@@ -777,7 +777,7 @@ async function loadPricingConfig() {
     return;
   }
   try {
-    const response = await fetch(window.OneStopSSM.restBase + 'pricing-config?form_id=' + encodeURIComponent(FORM_ID));
+    const response = await fetch(window.OneStopSSM.restBase + 'pricing?form_id=' + encodeURIComponent(FORM_ID));
     const config = await response.json().catch(() => ({}));
     if (response.ok) applyPricingConfig(config);
   } catch (error) {
@@ -1600,6 +1600,10 @@ renewalForm?.addEventListener('submit', async (event) => {
   }
 
   const payload = buildSubmissionPayload();
+  if (window.OneStopSSM?.mode === 'vercel' && !window.OneStopSSM?.paymentsEnabled) {
+    showFormSubmitError('Online payment is not connected in this Vercel build yet. SSM checking and pricing are active.');
+    return;
+  }
   showFormSubmitError('');
   if (payButton) { payButton.disabled = true; payButton.textContent = PAYMENT_REDIRECT_TEXT; }
   try {

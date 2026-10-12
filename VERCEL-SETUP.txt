@@ -1,0 +1,28 @@
+OSR VERCEL STANDALONE - SETUP
+============================
+
+This build does NOT call WordPress.
+
+WORKING WITHOUT DATABASE
+- Public HTML/CSS/JS site
+- Automatic SSM verification via /api/ssm-check
+- Pricing via /api/pricing
+
+DATABASE / ADMIN SETUP
+1. Create a hosted Postgres database and copy its DATABASE_URL.
+2. Run database/schema.sql against that database.
+3. In Vercel Project > Settings > Environment Variables add:
+   DATABASE_URL
+   ADMIN_PASSWORD
+   SESSION_SECRET (use a long random string)
+4. Redeploy.
+5. Visit /admin/ and /reports/.
+
+PAYMENTS
+- Fiuu/payment submission is intentionally disabled in this milestone.
+- No WordPress fallback/proxy exists.
+- The .env.example includes placeholders for the next payment stage.
+
+IMPORTANT
+SSM lookup is a server-side port of the logic in onestop-ssm-renewal-3.0.8-add-no-branches-limit.zip.
+The build environment used to create this ZIP could not reach ssm.com.my, so verify the first real lookup after deployment on Vercel.
