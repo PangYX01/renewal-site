@@ -1,0 +1,31 @@
+Standalone Admin + Reports port
+===============================
+Source visual reference:
+- onestop-ssm-renewal 3.0.8 add-no-branches-limit
+- assets/css/admin.css
+- assets/css/reports.css
+- templates/admin.php
+- templates/reports.php
+
+What is standalone now:
+- Plugin-style Admin header/navigation/stats/tabs/filters/table/pagination
+- Entry detail modal
+- Manual payment status changes
+- Add note
+- Delete record
+- CSV export
+- Plugin-style Reports layout
+- Summary KPI cards
+- Revenue/submission trend charts
+- Payment method/status breakdowns
+- SSM verification breakdown
+- Renewal years / form / add-on analysis
+- Admin password login/session via Vercel environment variables
+- Supabase/Postgres data through DATABASE_URL
+
+No WordPress runtime URLs or API calls are used by these Admin/Reports pages.
+
+Not yet migrated:
+- Manual customer email sending
+- Payment invoice PDF download
+Those controls are intentionally disabled rather than linked to WordPress.

@@ -26,3 +26,29 @@ PAYMENTS
 IMPORTANT
 SSM lookup is a server-side port of the logic in onestop-ssm-renewal-3.0.8-add-no-branches-limit.zip.
 The build environment used to create this ZIP could not reach ssm.com.my, so verify the first real lookup after deployment on Vercel.
+
+ADMIN / REPORTS UI PORT (v2)
+----------------------------
+The /admin/ and /reports/ pages now reuse the visual structure and CSS from the OneStop SSM Renewal 3.0.8 plugin, but do not call WordPress.
+
+Standalone routes used:
+  /api/admin-session
+  /api/admin-login
+  /api/admin-logout
+  /api/admin-stats
+  /api/admin-records
+  /api/admin-record
+  /api/admin-note
+  /api/admin-export
+  /api/reports-overview
+  /api/reports-analysis
+
+Admin login:
+  /admin/login/
+
+Required Vercel environment variables remain:
+  DATABASE_URL
+  ADMIN_PASSWORD
+  SESSION_SECRET
+
+The email/invoice action shown in Entry Details is intentionally disabled until the standalone email/PDF service is migrated. It does not call WordPress.
