@@ -52,3 +52,8 @@ Required Vercel environment variables remain:
   SESSION_SECRET
 
 The email/invoice action shown in Entry Details is intentionally disabled until the standalone email/PDF service is migrated. It does not call WordPress.
+
+HOBBY PLAN NOTE
+---------------
+This revision consolidates all API routes into a single api/index.js Serverless Function.
+The clean /api/* URLs are preserved by vercel.json rewrites.

@@ -1,0 +1,23 @@
+Vercel Hobby single-function architecture
+=========================================
+
+This build uses ONE Vercel Serverless Function only:
+
+  api/index.js
+
+The public API URLs remain unchanged. vercel.json rewrites them internally to api/index.js using an action parameter.
+
+Examples:
+  /api/pricing          -> /api/index?action=pricing
+  /api/ssm-check        -> /api/index?action=ssm-check
+  /api/admin-records    -> /api/index?action=admin-records
+  /api/reports-overview -> /api/index?action=reports-overview
+
+Files in lib/ are helper modules bundled with the single function; they are not separate API endpoints.
+
+Existing Vercel environment variables remain:
+  DATABASE_URL
+  ADMIN_PASSWORD
+  SESSION_SECRET
+
+No WordPress proxy is used.
