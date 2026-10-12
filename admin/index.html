@@ -1,15 +1,111 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Form Entries | One Stop Renew Portal</title><link rel="stylesheet" href="/css/admin.css"><link rel="stylesheet" href="/css/admin-standalone.css"></head>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Form Entries | One Stop Renew Portal</title>
+<link rel="stylesheet" href="/css/admin.css">
+<link rel="stylesheet" href="/css/admin-standalone.css">
+</head>
 <body>
 <div id="onestop-ssm-dashboard" class="onestop-admin-shell admin-page onestop-frontend-dashboard">
-<header class="admin-topbar"><div class="admin-topbar-inner"><div><p class="admin-eyebrow">One Stop Renew Portal</p><h1>Form Entries</h1></div><div class="admin-topbar-actions"><nav class="osr-pm-main-nav onestop-plugin-nav" aria-label="SSM Forms"><a class="active" href="/admin/">Entries</a><a href="/reports/">Reports</a></nav><a class="admin-home-link" href="/">Back to site</a><button class="admin-button admin-button-secondary" id="logout-button" type="button">Logout</button></div></div></header>
-<main class="admin-main">
-<section aria-label="Entry statistics" class="admin-stats" id="admin-stats"><div class="admin-empty">Loading statistics...</div></section>
-<section class="admin-panel"><div class="admin-panel-head"><h2>Renewal Entries</h2><div aria-label="Filter by payment status" class="admin-status-tabs" id="status-tabs" role="tablist"><button class="is-active" data-status="all" type="button">All</button><button data-status="paid" type="button">Paid</button><button data-status="pending" type="button">Pending</button><button data-status="failed" type="button">Failed</button><button data-status="refunded" type="button">Refunded</button></div></div>
-<div class="admin-toolbar" id="entries-toolbar"><div class="admin-toolbar-primary"><label class="admin-search"><span class="sr-only">Search entries</span><input id="search-input" placeholder="Search name, email, SSM no, bill ID..." type="search"></label></div><div class="admin-toolbar-secondary"><div class="admin-date-range" role="group" aria-label="Submission date range"><label class="admin-date"><span>From</span><input id="start-date" type="date"></label><label class="admin-date"><span>To</span><input id="end-date" type="date"></label></div><button class="admin-button admin-button-secondary" id="clear-filters" type="button">Clear</button><button class="admin-button admin-button-primary" id="export-button" type="button">Export CSV</button></div></div>
-<div class="admin-table-panel"><div class="admin-table-wrap" id="table-wrap"><table class="admin-table"><thead><tr><th class="id-col">ID</th><th>Name</th><th>Email</th><th>Status</th><th>Total</th><th>Method</th><th>Business</th><th>Submitted</th><th class="actions-col">Actions</th></tr></thead><tbody id="records-body"><tr><td class="admin-empty" colspan="9">Loading entries...</td></tr></tbody></table></div><div class="admin-table-footer"><div class="admin-table-footer-bar"><div class="admin-table-footer-left"><span class="admin-page-range" id="page-range">Page 0 to 0 of 0</span><label class="admin-per-page"><select aria-label="Rows per page" id="per-page"><option value="10">10 Per page</option><option selected value="20">20 Per page</option><option value="50">50 Per page</option><option value="100">100 Per page</option></select></label></div><nav aria-label="Entries pagination" class="admin-pagination" id="pagination"></nav></div></div></div>
-</section></main>
-<dialog class="admin-modal" id="detail-modal"><div class="admin-modal-head"><div class="admin-modal-head-main"><h3>Entry Details</h3></div><div class="admin-modal-head-actions"><button aria-label="Close" class="admin-icon-button" id="close-modal" type="button">×</button></div></div><div class="admin-modal-body" id="detail-content"></div></dialog>
-<dialog class="admin-modal admin-status-modal" id="status-modal"><div class="admin-modal-head"><h3>Edit payment status</h3><button aria-label="Close" class="admin-icon-button" id="close-status-modal" type="button">×</button></div><div class="admin-modal-body status-modal-body"><div class="status-modal-row"><span class="status-modal-label">Current Payment Status</span><span class="status-modal-current" id="status-modal-current">-</span></div><div class="status-modal-row status-modal-row-options"><span class="status-modal-label">New Payment Status</span><div aria-label="New payment status" class="status-modal-options" id="status-modal-options" role="radiogroup"></div></div><div class="status-modal-actions"><button class="admin-button admin-button-secondary" id="status-modal-cancel" type="button">Cancel</button><button class="admin-button status-modal-confirm" id="status-modal-confirm" type="button">Confirm</button></div></div></dialog>
+<header class="admin-topbar">
+<div class="admin-topbar-inner">
+<div>
+<p class="admin-eyebrow">One Stop Renew Portal</p>
+<h1>Form Entries</h1>
 </div>
-<script src="/js/admin-standalone.js"></script></body></html>
+<div class="admin-topbar-actions">
+<nav class="osr-pm-main-nav onestop-plugin-nav" aria-label="SSM Forms"><a class="active" href="/admin/">Entries</a><a href="/reports/">Reports</a></nav>
+<a class="admin-home-link" href="/">Back to site</a>
+<button class="admin-button admin-button-secondary" id="logout-button" type="button">Logout</button>
+</div>
+</div>
+</header>
+
+<main class="admin-main">
+<section aria-label="Entry statistics" class="admin-stats" id="admin-stats"></section>
+<section class="admin-panel">
+<div class="admin-panel-head">
+<h2>Renewal Entries</h2>
+<div aria-label="Filter by payment status" class="admin-status-tabs" id="status-tabs" role="tablist">
+<button class="is-active" data-status="all" type="button">All</button>
+<button data-status="paid" type="button">Paid</button>
+<button data-status="pending" type="button">Pending</button>
+<button data-status="failed" type="button">Failed</button>
+<button data-status="refunded" type="button">Refunded</button>
+</div>
+</div>
+<div class="admin-toolbar" id="entries-toolbar">
+<div class="admin-toolbar-primary">
+<div class="admin-bulk-actions" hidden id="bulk-actions">
+<span id="selected-count">0 selected</span>
+<button class="admin-button admin-button-secondary standalone-disabled-action" id="bulk-send-invoice" type="button" title="Email/invoice service is not connected yet">Send Payment Invoice</button>
+<button class="admin-button admin-button-danger" id="bulk-delete" type="button">Delete Selected</button>
+</div>
+<label class="admin-search">
+<span class="sr-only">Search entries</span>
+<input id="search-input" placeholder="Search name, email, SSM no, bill ID..." type="search">
+</label>
+</div>
+<div class="admin-toolbar-secondary">
+<div class="admin-date-range" role="group" aria-label="Submission date range and timezone">
+<label class="admin-date admin-timezone">
+<span>Timezone</span>
+<select id="entries-timezone" aria-label="Date range timezone"><option value="utc8" selected>UTC+8</option><option value="utc0">UTC+0</option></select>
+</label>
+<label class="admin-date"><span>From</span><input id="start-date" type="date"></label>
+<label class="admin-date"><span>To</span><input id="end-date" type="date"></label>
+</div>
+<button class="admin-button admin-button-secondary" id="clear-filters" type="button">Clear</button>
+<button class="admin-button admin-button-primary" id="export-button" type="button">Export CSV</button>
+</div>
+</div>
+<div class="admin-table-panel">
+<div class="admin-table-wrap" id="table-wrap">
+<table class="admin-table">
+<thead><tr>
+<th class="checkbox-col"><input aria-label="Select all entries" id="select-all" type="checkbox"></th>
+<th class="id-col">ID</th><th>Name</th><th>Email</th><th>Status</th><th>Total</th><th>Method</th><th>Business</th><th>Submitted</th><th class="actions-col">Actions</th>
+</tr></thead>
+<tbody id="records-body"><tr><td class="admin-empty" colspan="10">Loading entries...</td></tr></tbody>
+</table>
+</div>
+<div class="admin-table-footer">
+<div class="admin-table-scrollbar" hidden id="table-scrollbar"><div class="admin-table-scrollcontent" id="table-scroll-content"></div></div>
+<div class="admin-table-footer-bar">
+<div class="admin-table-footer-left">
+<span class="admin-page-range" id="page-range">Page 0 to 0 of 0</span>
+<label class="admin-per-page"><select aria-label="Rows per page" id="per-page"><option value="10">10 Per page</option><option selected value="20">20 Per page</option><option value="50">50 Per page</option><option value="100">100 Per page</option></select></label>
+</div>
+<nav aria-label="Entries pagination" class="admin-pagination" id="pagination"></nav>
+</div>
+</div>
+</div>
+</section>
+</main>
+
+<dialog class="admin-modal" id="detail-modal">
+<div class="admin-modal-head">
+<div class="admin-modal-head-main"><h3>Entry Details</h3><span class="admin-modal-nav-count" hidden id="detail-nav-count"></span></div>
+<div class="admin-modal-head-actions">
+<button class="admin-button admin-button-secondary detail-nav-button" disabled id="detail-prev" type="button">Previous</button>
+<button class="admin-button admin-button-secondary detail-nav-button" disabled id="detail-next" type="button">Next</button>
+<button aria-label="Close" class="admin-icon-button" id="close-modal" type="button">×</button>
+</div>
+</div>
+<div class="admin-modal-body" id="detail-content"></div>
+</dialog>
+
+<dialog class="admin-modal admin-status-modal" id="status-modal">
+<div class="admin-modal-head"><h3>Edit payment status</h3><button aria-label="Close" class="admin-icon-button" id="close-status-modal" type="button">×</button></div>
+<div class="admin-modal-body status-modal-body">
+<div class="status-modal-row"><span class="status-modal-label">Current Payment Status</span><span class="status-modal-current" id="status-modal-current">-</span></div>
+<div class="status-modal-row status-modal-row-options"><span class="status-modal-label">New Payment Status</span><div aria-label="New payment status" class="status-modal-options" id="status-modal-options" role="radiogroup"></div></div>
+<div class="status-modal-actions"><button class="admin-button admin-button-secondary" id="status-modal-cancel" type="button">Cancel</button><button class="admin-button status-modal-confirm" id="status-modal-confirm" type="button">Confirm</button></div>
+</div>
+</dialog>
+</div>
+<script src="/js/admin-standalone.js"></script>
+</body>
+</html>
