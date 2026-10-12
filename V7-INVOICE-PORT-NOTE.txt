@@ -1,0 +1,12 @@
+V7 invoice update
+=================
+The standalone Payment Invoice PDF generator now directly ports the legacy invoice layout from the current One Stop SSM Renewal plugin (3.0.8 add-no-branches-limit):
+- Invoice No. / INV-xxxxxx / Date positions
+- Invoice from: / Invoice to: blocks
+- Item / Quantity / Price / Line Total table dimensions
+- Total Amount: and Payment Type: placement
+- Helvetica / Helvetica-Bold metrics and alignment
+
+Both /api/admin-invoice and /api/admin-email use lib/shared/invoice.js, so downloaded invoices and emailed invoice attachments are generated from the same plugin-style template.
+
+This remains v7; no WordPress runtime/API connection has been added.

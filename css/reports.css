@@ -79,3 +79,7 @@ body:not(.wp-admin) .onestop-reports-app.is-frontend{width:100vw!important;max-w
   cursor:pointer!important;
 }
 .onestop-reports-app select:not([multiple])::-ms-expand{display:none}
+
+/* Standalone parity: match the original report filter control spacing. */
+.reports-filter-panel select,
+.reports-filter-panel input { padding: .5rem 1rem; }
